@@ -1,0 +1,21 @@
+.circle {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 0, 0, 0.7); /* Semi-transparent red */
+  border: 2px solid #007aff; /* Apple blue */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: grab;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.circle:active {
+  cursor: grabbing;
+  transform: scale(1.05);
+}
+
+.circle.selected {
+  background-color: rgba(0, 122, 255, 0.5); /* Highlight color */
+  border-color: #0051a8; /* Darker blue for selected state */
+}

@@ -1,0 +1,24 @@
+.image-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f5f5f7; /* Light background inspired by Apple design */
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.image-section img {
+  max-width: 100%;
+  border-radius: 20px; /* Rounded corners for the image */
+}
+
+.circle-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent circles from overflowing */
+}
