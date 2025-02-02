@@ -1,6 +1,11 @@
-## My ReactJS Assessment App (For Job Interview)
 
-This project is a React application for Job Assessment purpose, that allows users to interact with draggable circles on an image, input coordinates, and select materials. The design is inspired by Apple product pages, featuring rounded corners, smooth animations, and a clean layout.
+![Uploading Screenshot 2025-02-02 at 19.15.01.png…]()
+<img width="1130" alt="Screenshot 2025-02-02 at 19 15 22" src="https://github.com/user-attachments/assets/25b82ba7-d35e-4c14-bb3b-645b77bf0bcd" />
+<img width="372" alt="Screenshot 2025-02-02 at 19 16 35" src="https://github.com/user-attachments/assets/4b9df126-23f1-47c9-839b-ed2c7d3943be" />
+
+## Job Assessment React App (For Job Interview Purpose)
+
+This project is a React application, created for Job Assessment purpose, that allows users to interact with draggable circles on an image, input coordinates, and select materials. The design is inspired by Apple product pages, featuring rounded corners, smooth animations, and a clean layout.
 
 ### Project Requirements
 
