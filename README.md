@@ -5,6 +5,8 @@
 
 This project is a React application, created for Job Assessment purpose, that allows users to interact with draggable circles on an image, input coordinates, and select materials. The design is inspired by Apple product pages, featuring rounded corners, smooth animations, and a clean layout.
 
+**Online Live**: https://job-assessment-react-app-arnob.vercel.app/
+
 ### Project Requirements
 
 1. **Design**: The design should be inspired by Apple's product page, featuring rounded corners, appropriate button sizes, text sizes, and selection animations.
