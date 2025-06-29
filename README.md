@@ -1,27 +1,46 @@
+# Image Input Coordinates – Job Assessment Project 2
 
-<img width="678" alt="Screenshot 2025-02-02 at 20 16 42" src="https://github.com/user-attachments/assets/f600ea85-ea8a-4684-a06f-9906ba4da0dd" /><img width="1130" alt="Screenshot 2025-02-02 at 19 15 22" src="https://github.com/user-attachments/assets/25b82ba7-d35e-4c14-bb3b-645b77bf0bcd" /><img width="372" alt="Screenshot 2025-02-02 at 19 16 35" src="https://github.com/user-attachments/assets/4b9df126-23f1-47c9-839b-ed2c7d3943be" />
+<img width="800" alt="Screenshot 2025-02-02 at 20 16 42" src="https://github.com/user-attachments/assets/f600ea85-ea8a-4684-a06f-9906ba4da0dd" /> <img width="800" alt="Screenshot 2025-02-02 at 19 15 22" src="https://github.com/user-attachments/assets/25b82ba7-d35e-4c14-bb3b-645b77bf0bcd" /> <img width="800" alt="Screenshot 2025-02-02 at 19 16 35" src="https://github.com/user-attachments/assets/4b9df126-23f1-47c9-839b-ed2c7d3943be" />
 
-## Job Assessment React App (For Job Interview Purpose)
+---
 
-This project is a React application, created for Job Assessment purpose, that allows users to interact with draggable circles on an image, input coordinates, and select materials. The design is inspired by Apple product pages, featuring rounded corners, smooth animations, and a clean layout.
+## Project Summary
 
-**Online Live**: https://job-assessment-react-app-arnob.vercel.app/
+This project is a feature-rich React application developed for a job assessment. It is designed to help users visually interact with an image by adding, dragging, and positioning circles based on coordinates, and selecting material types for each set of coordinates. The UI experience is heavily inspired by Apple's product page design, emphasizing clean layouts, rounded corners, subtle shadows, and smooth selection animations.
 
-### Project Requirements
+The application showcases advanced usage of React for state management, event handling, and component-based architecture. It is ideal for those seeking to learn about building interactive UIs, managing complex states, and handling user-driven events in React.
 
-1. **Design**: The design should be inspired by Apple's product page, featuring rounded corners, appropriate button sizes, text sizes, and selection animations.
-2. **Functionality**:
-   - **Image Section**: Display an image with circles that can be added, positioned, and dragged around.
-   - **Input Box**: Allow users to input x and y coordinates to add circles to the image.
-   - **Material Selection**: Allow users to select a material from a list of 5 materials.
-   - **Submit Button**: Log the output data, including the coordinates of the circles in pixels and percentage, and the selected material.
+- **Live Demo:** [https://job-assessment-react-app-arnob.vercel.app/](https://job-assessment-react-app-arnob.vercel.app/)
 
-### Expected Final Result
+---
 
-- **Image Section**: An image with draggable circles that can be added via an input box.
-- **Input Box**: An input box to enter x and y coordinates and add circles to the image.
-- **Material Selection**: A list of materials that can be selected, with visual feedback for the selected material.
-- **Submit Button**: A button that logs the current state of circles and the selected material to the console.
+## Table of Contents
+
+1. [Project Requirements](#project-requirements)
+2. [Project Structure](#project-structure)
+3. [Key Components & Walkthrough](#key-components--walkthrough)
+   - [Image Section](#1-image-section)
+   - [Input Box](#2-input-box)
+   - [Material Selection](#3-material-selection)
+   - [Submit Button](#4-submit-button)
+4. [Features](#features)
+5. [How to Run the Project](#how-to-run-the-project)
+6. [Learning & Teaching Guide](#learning--teaching-guide)
+7. [Keywords & Technologies](#keywords--technologies)
+8. [Contributing](#contributing)
+9. [License](#license)
+
+---
+
+## Project Requirements
+
+- **Design:** Inspired by Apple’s product page (rounded corners, smooth animations, clean UI).
+- **Image Section:** Display an image with draggable circles.
+- **Input Box:** Allow users to input x and y coordinates to add circles.
+- **Material Selection:** Choose from 5 materials, with clear selection feedback.
+- **Submit:** Log the coordinates (in pixels and percent) and selected material to the console.
+
+---
 
 ## Project Structure
 
@@ -29,8 +48,8 @@ This project is a React application, created for Job Assessment purpose, that al
 my-react-app
 ├── public
 │   ├── index.html
-│   └── favicon.ico
-│   ├── images
+│   ├── favicon.ico
+│   └── images
 │       └── image.jpg
 ├── src
 │   ├── components
@@ -52,89 +71,45 @@ my-react-app
 └── README.md
 ```
 
-## Review Key Components
+---
+
+## Key Components & Walkthrough
 
 ### 1. Image Section
 
-- **Functionality**: Display an image with circles that can be added, positioned, and dragged around.
-- **Implementation**: Ensure the `ImageSection` component is correctly implemented.
+- **Purpose:** Displays the main background image and overlays draggable circles.
+- **How it Works:** Circles are rendered using coordinates; users can drag to reposition them.
+- **Teaching Focus:** Learn about absolute positioning, React props, and event handling.
 
-### ImageSection.js
-
+**Source Example:**
 ```javascript
-import React from "react";
-import Circle from "./Circle";
-import "../styles/ImageSection.css";
-
-const ImageSection = ({ circles, updateCirclePosition }) => {
-  console.log("Rendering ImageSection with circles:", circles);
-
-  return (
-    <div className="image-section">
-      <img
-        src={`${process.env.PUBLIC_URL}/images/image.jpg`}
-        alt="Background"
-        className="background-image"
-      />
-      <div className="circle-container">
-        {circles.map((circle, index) => (
-          <Circle
-            key={index}
-            x={circle.x}
-            y={circle.y}
-            onDrag={(newX, newY) => updateCirclePosition(circle.id, newX, newY)}
-            index={index}
-            circles={circles}
-          />
-        ))}
-      </div>
+const ImageSection = ({ circles, updateCirclePosition }) => (
+  <div className="image-section">
+    <img src={`${process.env.PUBLIC_URL}/images/image.jpg`} alt="Background" />
+    <div className="circle-container">
+      {circles.map((circle, index) => (
+        <Circle
+          key={index}
+          x={circle.x}
+          y={circle.y}
+          onDrag={(newX, newY) => updateCirclePosition(circle.id, newX, newY)}
+        />
+      ))}
     </div>
-  );
-};
-
-export default ImageSection;
+  </div>
+);
 ```
 
-### ImageSection.css
-
-```css
-.image-section {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: #f5f5f7; /* Light background inspired by Apple design */
-  border-radius: 20px; /* Rounded corners */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
-
-.image-section img {
-  max-width: 100%;
-  border-radius: 20px; /* Rounded corners for the image */
-}
-
-.circle-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* Prevent circles from overflowing */
-}
-```
+---
 
 ### 2. Input Box
 
-- **Functionality**: Allow users to input x and y coordinates to add circles to the image.
-- **Implementation**: Ensure the `InputBox` component is correctly implemented.
+- **Purpose:** Allows users to input X and Y values to add new circles.
+- **How it Works:** On clicking "Add Circle", the entered coordinates are added as a new circle.
+- **Teaching Focus:** Controlled components, state updates, and form handling.
 
-### InputBox.js
-
+**Source Example:**
 ```javascript
-import React, { useState } from "react";
-import "../styles/InputBox.css";
-
 const InputBox = ({ addCircle }) => {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
@@ -147,330 +122,143 @@ const InputBox = ({ addCircle }) => {
 
   return (
     <div className="input-box">
-      <h2>Circle Position</h2>
-      <div className="input-fields">
-        <input
-          type="number"
-          value={x}
-          onChange={(e) => setX(Number(e.target.value))}
-          placeholder="X Distance"
-        />
-        <input
-          type="number"
-          value={y}
-          onChange={(e) => setY(Number(e.target.value))}
-          placeholder="Y Distance"
-        />
-        <button onClick={handleAddCircle}>Add Circle</button>
-      </div>
+      <input type="number" value={x} onChange={e => setX(Number(e.target.value))} />
+      <input type="number" value={y} onChange={e => setY(Number(e.target.value))} />
+      <button onClick={handleAddCircle}>Add Circle</button>
     </div>
   );
 };
-
-export default InputBox;
 ```
 
-### InputBox.css
-
-```css
-.input-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px;
-}
-
-.input-fields {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.input-fields input {
-  margin: 5px;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-}
-
-.input-fields button {
-  margin: 10px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  background-color: #007aff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.input-fields button:hover {
-  background-color: #005bb5;
-}
-```
+---
 
 ### 3. Material Selection
 
-- **Functionality**: Allow users to select a material from a list of 5 materials.
-- **Implementation**: Ensure the `MaterialSelection` component is correctly implemented.
+- **Purpose:** Lets users select a material from five options, with visual feedback.
+- **How it Works:** Clicking an option updates the selected material state.
+- **Teaching Focus:** Array mapping, conditional styles, and UI feedback.
 
-### MaterialSelection.js
-
+**Source Example:**
 ```javascript
-import React, { useState } from "react";
-import "../styles/MaterialSelection.css";
-
-const materials = [
-  { id: 1, name: "Material 1" },
-  { id: 2, name: "Material 2" },
-  { id: 3, name: "Material 3" },
-  { id: 4, name: "Material 4" },
-  { id: 5, name: "Material 5" },
-];
-
-const MaterialSelection = ({ selectedMaterial, setSelectedMaterial }) => {
-  const [hoveredMaterial, setHoveredMaterial] = useState(null);
-
-  const handleMaterialClick = (material) => {
-    console.log("Material clicked:", material);
-    setSelectedMaterial(material);
-  };
-
-  return (
-    <div className="material-selection">
-      {materials.map((material) => (
-        <div
-          key={material.id}
-          className={`material-option ${
-            selectedMaterial?.id === material.id ? "selected" : ""
-          }`}
-          onClick={() => handleMaterialClick(material)}
-          onMouseEnter={() => setHoveredMaterial(material.id)}
-          onMouseLeave={() => setHoveredMaterial(null)}
-        >
-          {material.name}
-        </div>
-      ))}
-    </div>
-  );
-};
-
-export default MaterialSelection;
+const materials = [ ... ];
+const MaterialSelection = ({ selectedMaterial, setSelectedMaterial }) => (
+  <div className="material-selection">
+    {materials.map(material => (
+      <div
+        key={material.id}
+        className={`material-option ${selectedMaterial?.id === material.id ? "selected" : ""}`}
+        onClick={() => setSelectedMaterial(material)}
+      >
+        {material.name}
+      </div>
+    ))}
+  </div>
+);
 ```
 
-###
-
-MaterialSelection.css
-
-```css
-.material-selection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px;
-}
-
-.material-option {
-  width: 100px;
-  height: 100px;
-  border-radius: 15px;
-  margin: 10px;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f0f0f0; /* Light background color */
-  border: 2px solid transparent; /* Default border */
-}
-
-.material-option.selected {
-  transform: scale(1.1);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  border-color: #007aff; /* Highlight border color */
-  background-color: #e0e0e0; /* Slightly darker background for selected state */
-}
-```
+---
 
 ### 4. Submit Button
 
-- **Functionality**: Log the output data, including the coordinates of the circles in pixels and percentage, and the selected material.
-- **Implementation**: Ensure the `handleSubmit` function in `App.js` is correctly implemented.
+- **Purpose:** Compiles and logs all current data (circles, positions, material).
+- **Teaching Focus:** Data shaping, window API for percent calculation, and debugging via `console.log`.
 
-### App.js
-
+**App.js Example:**
 ```javascript
-import React, { useState } from "react";
-import ImageSection from "./ImageSection";
-import InputBox from "./InputBox";
-import MaterialSelection from "./MaterialSelection";
-import "../styles/App.css";
-
-const App = () => {
-  const [circles, setCircles] = useState([]);
-  const [selectedMaterial, setSelectedMaterial] = useState(null);
-
-  const addCircle = (x, y) => {
-    setCircles([...circles, { id: Date.now(), x, y }]);
+const handleSubmit = () => {
+  const outputData = {
+    circles: circles.map(circle => ({
+      ...circle,
+      xPercentage: (circle.x / window.innerWidth) * 100,
+      yPercentage: (circle.y / window.innerHeight) * 100,
+    })),
+    selectedMaterial,
   };
-
-  const updateCirclePosition = (id, x, y) => {
-    setCircles(
-      circles.map((circle) => (circle.id === id ? { ...circle, x, y } : circle))
-    );
-  };
-
-  const handleMaterialSelect = (material) => {
-    setSelectedMaterial(material);
-  };
-
-  const handleSubmit = () => {
-    const outputData = {
-      circles: circles.map((circle) => ({
-        id: circle.id,
-        x: circle.x,
-        y: circle.y,
-        xPercentage: (circle.x / window.innerWidth) * 100,
-        yPercentage: (circle.y / window.innerHeight) * 100,
-      })),
-      selectedMaterial,
-    };
-    console.log("Submitted data:", outputData);
-  };
-
-  console.log("Rendering App with circles:", circles);
-
-  return (
-    <div className="app-container">
-      <ImageSection
-        circles={circles}
-        updateCirclePosition={updateCirclePosition}
-      />
-      <InputBox addCircle={addCircle} />
-      <MaterialSelection
-        selectedMaterial={selectedMaterial}
-        setSelectedMaterial={handleMaterialSelect}
-      />
-      <button onClick={handleSubmit} className="submit-button">
-        Submit
-      </button>
-    </div>
-  );
+  console.log("Submitted data:", outputData);
 };
-
-export default App;
 ```
 
-### App.css
-
-```css
-.app-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #ffffff; /* White background */
-  border-radius: 20px; /* Rounded corners */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
-
-.submit-button {
-  margin: 20px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  background-color: #007aff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.submit-button:hover {
-  background-color: #005bb5;
-}
-```
-
-### Console Output
-
-```
-Submitted data:
-
-{circles: Array(2), selectedMaterial: {…}}
-   circles: Array(2)
-   0:
-      id: 1738501397283
-      x: 98
-      xPercentage: 11.61137440758294
-      y: 52
-      yPercentage: 8.637873754152823
-      [[Prototype]]: Object
-   1:
-      id: 1738501414317
-      x: 250
-      xPercentage: 29.620853080568722
-      y: 261
-      yPercentage: 43.355481727574755
-      [[Prototype]]: Object
-      length: 2
-      [[Prototype]]: Array(0)
-
-selectedMaterial:
-   id: 2
-   name: "Material 2"
-   [[Prototype]]: Object[[Prototype]]: Object
-```
+---
 
 ## Features
 
-- **Draggable Circles**: Users can drag circles on the image, and the coordinates will update in real-time.
-- **Input Coordinates**: Input fields for x and y coordinates allow users to set the position of the circles.
-- **Add Circles**: Users can add multiple circles, ensuring they do not collide while being dragged.
-- **Material Selection**: Choose from five different materials with smooth animations for selection.
-- **Submit Functionality**: Console logs the coordinates and selected material upon submission.
+- **Draggable Circles:** Move circles on the image interactively.
+- **Input Coordinates:** Add circles precisely using X/Y input.
+- **Add Multiple Circles:** Manage many circles, each with unique positions.
+- **Material Selection:** Choose from five materials, with animation.
+- **Data Submission:** View structured data for all circles and the current material.
+- **Apple-Inspired UI:** Modern, clean, and visually appealing interface.
 
-## Getting Started
+---
+
+## How to Run the Project
 
 ### Prerequisites
 
-- Node.js (version 14 or higher)
-- npm (comes with Node.js)
+- Node.js (v14+)
+- npm
 
-### Installation
+### Installation & Setup
 
-1. Clone the repository:
-
-   ```
+1. **Clone the repository:**
+   ```bash
    git clone <repository-url>
    cd my-react-app
    ```
-
-2. Install dependencies:
-   ```
+2. **Install dependencies:**
+   ```bash
    npm install
    ```
+3. **Run the development server:**
+   ```bash
+   npm start
+   ```
+   Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Running the Application
+4. **Run tests:**
+   ```bash
+   npm test
+   ```
 
-To start the development server, run:
+---
 
-```
-npm start
-```
+## Learning & Teaching Guide
 
-Open your browser and navigate to `http://localhost:3000` to view the application.
+This project is a great learning resource for:
 
-### Running Tests
+- **React Fundamentals:** Components, props, and state.
+- **Event Handling:** Drag-and-drop, input events, and submission logic.
+- **Styling:** CSS modules for scoped, reusable styles.
+- **UI/UX:** Clean layout, animations, and visual feedback.
+- **Data Processing:** Coordinate conversions (pixels to percent), array mapping, and immutability.
 
-To run the tests, use:
+**Teaching Example:**
+- Add a circle at (100, 50), drag it, select "Material 3", and submit. Check the console for output structure (see code above for data example).
 
-```
-npm test
-```
+---
+
+## Keywords & Technologies
+
+- **React** (hooks, components)
+- **JavaScript (ES6+)**
+- **CSS** (custom styles, Apple-inspired)
+- **Draggable UI**
+- **State Management**
+- **User Input Handling**
+- **Responsive Design**
+- **Educational Project**
+- **Frontend Development**
+
+---
 
 ## Contributing
 
-Feel free to submit issues or pull requests for improvements or bug fixes.
+Feel free to submit pull requests or issues for improvements and bug fixes.
+
+---
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
